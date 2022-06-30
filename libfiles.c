@@ -1,5 +1,15 @@
 #include "libfiles.h"
 
+struct nodo{
+    char* gear;
+    char* distance;
+    char* date;
+    char* altitude;
+    char* heartrate;
+    char* cadence;
+}
+typedef struct nodo nodo_b;
+
 int openFile(FILE* arq, char* path, char* dirName){
     char buffer[MAXSIZE];
 
@@ -24,6 +34,7 @@ void printFile(FILE* arq){
     char line[LINESIZE+1];
 
     fgets (line, LINESIZE, arq);
+
    /* while (!feof(arq){*/
     
         printf("%d: %s", i, line);
@@ -62,7 +73,7 @@ void readDirectoryFiles(DIR* dirstream, char* path){
         if (! direntry)
             break ;
 
-        if((direntry->d_name!="..")&&(direntry->d_name!="."))
+        if(direntry->d_type==8)
             openFile(arq, path, direntry->d_name);
     }        
 
